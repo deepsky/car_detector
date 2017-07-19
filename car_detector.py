@@ -44,7 +44,7 @@ if len(sys.argv) != 2:
         "program.\n"
         "    ./car_detector.py ./car_images")
     exit()
-faces_folder = sys.argv[1]
+cars_folder = sys.argv[1]
 
 
 # Now let's do the training.  The train_simple_object_detector() function has a
@@ -67,8 +67,8 @@ options.num_threads = 4
 options.be_verbose = True
 
 
-training_xml_path = os.path.join(faces_folder, "training.xml")
-testing_xml_path = os.path.join(faces_folder, "testing.xml")
+training_xml_path = os.path.join(cars_folder, "training.xml")
+testing_xml_path = os.path.join(cars_folder, "testing.xml")
 # This function does the actual training.  It will save the final detector to
 # detector.svm.  The input is an XML file that lists the images in the training
 # dataset and also contains the positions of the face boxes.  To create your
@@ -101,7 +101,7 @@ detector = dlib.simple_object_detector("detector.svm")
 # results.
 print("Showing detections on the images in the examples folder...")
 win = dlib.image_window()
-for f in glob.glob(os.path.join(faces_folder, "test-*.jpg")):
+for f in glob.glob(os.path.join(cars_folder, "test-*.jpg")):
     print("Processing file: {}".format(f))
     img = io.imread(f)
     dets = detector(img)
